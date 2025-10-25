@@ -1,0 +1,28 @@
+{
+  "name": "@tecknition/honkit-plugin-mermaid-configurable",
+  "version": "1.0.0",
+  "description": "A configurable Mermaid diagram plugin for Honkit",
+  "main": "index.js",
+  "keywords": ["honkit", "gitbook", "plugin", "mermaid", "diagram"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tecknition/honkit-plugin-mermaid-configurable.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node --test",
+    "coverage": "c8 node --test"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0",
+    "mermaid": "^11.3.0"
+  },
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "eslint": "^8.57.0"
+  }
+}
