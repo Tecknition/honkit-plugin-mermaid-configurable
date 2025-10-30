@@ -1,6 +1,6 @@
 {
   "name": "@tecknition/honkit-plugin-mermaid-configurable",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A configurable Mermaid diagram plugin for Honkit",
   "main": "index.js",
   "keywords": [
