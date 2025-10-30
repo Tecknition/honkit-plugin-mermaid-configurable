@@ -36,22 +36,22 @@ graph TD
 
 Inline overrides:
 
-````markdown
+```markdown
 {% mermaid theme="forest" fontSize="14px" %}
 sequenceDiagram
-  participant User
-  participant Server
-  User->>Server: Request
-  Server-->>User: Response
+participant User
+participant Server
+User->>Server: Request
+Server-->>User: Response
 {% endmermaid %}
-````
+```
 
 ## 🔧 Options
 
-| Option | Type | Default | Description |
-|--------|------|----------|-------------|
-| `theme` | string | `"default"` | Mermaid theme |
-| `securityLevel` | string | `"strict"` | Security level |
-| `fontFamily` | string | `"Arial, sans-serif"` | Font family |
-| `fontSize` | string | `"16px"` | Font size |
-| `startOnLoad` | boolean | `false` | Auto-start rendering |
+| Option          | Type    | Default               | Description          |
+| --------------- | ------- | --------------------- | -------------------- |
+| `theme`         | string  | `"default"`           | Mermaid theme        |
+| `securityLevel` | string  | `"strict"`            | Security level       |
+| `fontFamily`    | string  | `"Arial, sans-serif"` | Font family          |
+| `fontSize`      | string  | `"16px"`              | Font size            |
+| `startOnLoad`   | boolean | `false`               | Auto-start rendering |

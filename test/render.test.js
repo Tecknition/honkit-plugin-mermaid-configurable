@@ -37,16 +37,16 @@ test('renderMermaid handles invalid diagram gracefully', async () => {
 test('plugin init hook sets default config', () => {
   const context = {
     config: {
-      get: () => null
+      get: () => null,
     },
     log: {
-      info: () => {}
+      info: () => {},
     },
-    mermaidConfig: null
+    mermaidConfig: null,
   };
-  
+
   plugin.hooks.init.call(context);
-  
+
   assert.ok(context.mermaidConfig);
   assert.strictEqual(context.mermaidConfig.theme, 'default');
   assert.strictEqual(context.mermaidConfig.securityLevel, 'strict');
@@ -63,20 +63,20 @@ test('plugin init hook uses custom config', () => {
             securityLevel: 'loose',
             fontFamily: 'Courier',
             fontSize: '14px',
-            startOnLoad: true
+            startOnLoad: true,
           };
         }
         return null;
-      }
+      },
     },
     log: {
-      info: () => {}
+      info: () => {},
     },
-    mermaidConfig: null
+    mermaidConfig: null,
   };
-  
+
   plugin.hooks.init.call(context);
-  
+
   assert.strictEqual(context.mermaidConfig.theme, 'dark');
   assert.strictEqual(context.mermaidConfig.securityLevel, 'loose');
   assert.strictEqual(context.mermaidConfig.fontFamily, 'Courier');
@@ -88,31 +88,31 @@ test('plugin block process merges configs correctly', async () => {
   const context = {
     mermaidConfig: {
       theme: 'default',
-      securityLevel: 'strict'
-    }
+      securityLevel: 'strict',
+    },
   };
-  
+
   const block = {
     body: 'graph TD; A-->B;',
     kwargs: {
-      theme: 'dark'
-    }
+      theme: 'dark',
+    },
   };
-  
+
   const result = await plugin.blocks.mermaid.process.call(context, block);
   assert.ok(result.includes('svg'));
 });
 
 test('plugin block process handles empty body', async () => {
   const context = {
-    mermaidConfig: { theme: 'default' }
+    mermaidConfig: { theme: 'default' },
   };
-  
+
   const block = {
     body: '',
-    kwargs: {}
+    kwargs: {},
   };
-  
+
   const result = await plugin.blocks.mermaid.process.call(context, block);
   assert.strictEqual(result, '');
 });
@@ -120,13 +120,16 @@ test('plugin block process handles empty body', async () => {
 test('renderMermaid generates unique IDs for multiple diagrams', async () => {
   const diagram1 = await renderMermaid('graph TD; A-->B;', {});
   const diagram2 = await renderMermaid('graph TD; C-->D;', {});
-  
+
   assert.notStrictEqual(diagram1, diagram2);
   assert.ok(diagram1.includes('svg'));
   assert.ok(diagram2.includes('svg'));
 });
 
 test('renderMermaid handles sequenceDiagram syntax', async () => {
-  const diagram = await renderMermaid('sequenceDiagram\nAlice->>Bob: Hello Bob!\nBob->>Alice: Hi Alice!', {});
+  const diagram = await renderMermaid(
+    'sequenceDiagram\nAlice->>Bob: Hello Bob!\nBob->>Alice: Hi Alice!',
+    {}
+  );
   assert.ok(diagram.includes('svg') || diagram.includes('mermaid'));
 });
